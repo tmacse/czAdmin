@@ -1,0 +1,28 @@
+.article-detail{
+    font-weight: bold;
+    height:40px;
+    line-height: 40px;
+}
+.left{
+    font-size: 14px;
+    font-weight: bold;
+    margin-right:15px;
+    font-weight: bold;
+}
+.detail-pic{
+    width: 800px;
+    height: 600px;
+}
+.detail{
+    text-align: center;
+    font-size:14px;
+}
+.zgw-editor{
+    font-size:14px;
+    font-display:inherit;
+    line-height:18px;
+    width: 100%;
+}
+.richText {
+    border: 1px soild black;
+}

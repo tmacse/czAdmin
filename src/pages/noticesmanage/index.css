@@ -1,0 +1,21 @@
+/* .article-detail {
+    font-weight: bold;
+    height: 40px;
+    line-height: 40px;
+} */
+
+.left {
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+.detail-pic {
+    width: 200px;
+    height: 200px;
+}
+
+.detail {
+    font-size: 14px;
+}
