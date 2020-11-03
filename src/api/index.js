@@ -102,39 +102,27 @@ export const reqCheckedSearchArticles = ({ pageNum, pageSize, searchName, search
   pageSize,
   [searchType]: searchName,
 })
-//通知类的请求
-export const reqNotices = (pageNum, pageSize) => ajax(BASE + '/notices/list', { pageNum, pageSize })
-
+//CZ通知列表
+export const reqNotices = (pageNum, pageSize) => ajax(BASE + '/list/notices', { pageNum, pageSize })
+export const reqAddOrUpdateNotice = (notice) => ajax(BASE + '/notices/' + (notice._id ? 'update' : 'add'), notice, 'POST')
 export const reqSearchNotices = ({ pageNum, pageSize, searchName, searchType }) => ajax(BASE + '/notices/search', {
   pageNum,
   pageSize,
   [searchType]: searchName,
 })
 //基层风采图片请求
-export const reqPicShow = (pageNum, pageSize) => ajax(BASE + '/picshow/list', { pageNum, pageSize })
-export const reqSearchPicshow = ({ pageNum, pageSize, searchName, searchType }) => ajax(BASE + '/picshow/search', {
-  pageNum,
-  pageSize,
-  [searchType]: searchName,
-})
+
 
 //邮件类的请求
 //获取经过审核的邮件列表
 export const reqMailMessages = (pageNum, pageSize) => ajax(BASE + '/mail/checkedList', { pageNum, pageSize })
 //获取未经过审核（查看的）邮件列表
 export const reqMailUncheckedMessages = (pageNum, pageSize) => ajax(BASE + '/mail/listUnchecked', { pageNum, pageSize })
-//获取经过审核的举报列表
-export const reqInformMessages = (pageNum, pageSize) => ajax(BASE + '/mail/checkedListInform', { pageNum, pageSize })
-//获取未经过审核（查看的）举报列表
-export const reqInformUncheckedMessages = (pageNum, pageSize) => ajax(BASE + '/mail/listUncheckedInform', { pageNum, pageSize })
+
 
 export const reqMailUpdateStatus = (content) => ajax(BASE + '/mail/updateStatus', { content }, 'POST')
 
 export const reqDeleteMail = (_id) => ajax(BASE + '/mail/delete', { _id }, 'POST')
-//查看邮箱
-export const reqSearchInform = ({ pageNum, pageSize, searchName, searchType }) => ajax(BASE + '/mail/searchInform', { pageNum, pageSize, [searchType]: searchName, })
-//删除举报信息和查看举报信息
-export const reqDeleteInform = (_id) => ajax(BASE + '/mail/deleteInform', { _id }, 'POST')
 //查看邮箱
 export const reqSearchMails = ({ pageNum, pageSize, searchName, searchType }) => ajax(BASE + '/mail/search', { pageNum, pageSize, [searchType]: searchName, })
 
@@ -210,7 +198,7 @@ export const reqAddOrUpdatePicShow = (picshow) => ajax(BASE + '/picshow/' + (pic
 //修改文章
 export const reqAddOrUpdateBookFile = (bookfile) => ajax(BASE + '/bookfile/' + (bookfile._id ? 'update' : 'add'), bookfile, 'POST')
 export const reqAddOrUpdateDepartmentMessage = (Dmessage) => ajax(BASE + '/departmentMessage/' + (Dmessage._id ? 'update' : 'add'), Dmessage, 'POST')
-export const reqAddOrUpdateNotice = (notice) => ajax(BASE + '/notices/' + (notice._id ? 'update' : 'add'), notice, 'POST')
+
 // 获取所有角色的列表
 export const reqRoles = () => ajax(BASE + '/role/list')
 // 添加角色

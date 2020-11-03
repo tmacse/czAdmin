@@ -19,30 +19,24 @@ class WriteNotice extends Component {
         this.props.form.validateFields(async (error, values) => {
             if (!error) {
                 //1.收集数据，2调用接口请求函数添加3.根据结果提示
-                // console.log('ok')
-
                 const { title, author, department, category } = values
-                
                 const content = this.editor.current.getDetail()
                 const notice = { title, author, department, category, content }
+                console.log(notice)
                 // 2.如果是更新, 需要添加_id
-                if (this.isUpdate) {
-                    notice._id = this.notice._id
-                }
-
-                // 2. 调用接口请求函数去添加/更新
+                if (this.isUpdate) { notice._id = this.notice._id }
+                // 3. 调用接口请求函数去添加/更新
                 const result = await reqAddOrUpdateNotice(notice)
-
                 // 3. 根据结果提示
                 if (result.err === 0) {
                     message.success(`${this.isUpdate ? '更新' : '添加'}文章成功!`)
                     this.props.history.goBack()
-                }else if(result.err === -999){
+                } else if (result.err === -999) {
                     message.error('没有该权限，不要调皮')
                 } else if (result.err === -888) {
                     message.error('登陆过期,请重新登陆')
                 }
-                 else {
+                else {
                     message.error(`${this.isUpdate ? '更新' : '添加'}文章失败!`)
                 }
             }
@@ -60,14 +54,8 @@ class WriteNotice extends Component {
     }
     render() {
         const formItemLayout = {
-            labelCol: {
-                xs: { span: 2 },//左侧的宽度
-                sm: { span: 2 },
-            },
-            wrapperCol: {
-                xs: { span: 20 },//右侧的宽度
-                sm: { span: 20 },
-            },
+            labelCol: { xs: { span: 2 }, sm: { span: 2 }, },
+            wrapperCol: { xs: { span: 20 }, sm: { span: 20 }, },
         };
 
         const { getFieldDecorator } = this.props.form;
@@ -76,7 +64,7 @@ class WriteNotice extends Component {
                 <Form {...formItemLayout}>
                     <Item label="分类">
                         {getFieldDecorator('category', {
-                            initialValue:this.notice.category,
+                            initialValue: this.notice.category,
                             rules: [{ required: true, message: '必须选择文章分类!' }],
                         })(
                             <Select
@@ -122,10 +110,10 @@ class WriteNotice extends Component {
                         }
 
                     </Item>
-                   
+
                     <Item label="详情" labelCol={{ span: 2 }} wrapperCol={{ span: 20 }}>
                         {/* <RichTextEditor ref={this.editor} detail = {this.notice.content}/> */}
-                        <EditorDemo ref={this.editor} detail={this.notice.content}/>
+                        <EditorDemo ref={this.editor} detail={this.notice.content} />
                     </Item>
 
                     <Item>
@@ -138,4 +126,4 @@ class WriteNotice extends Component {
         )
     }
 }
-export default Form.create() (WriteNotice)
+export default Form.create()(WriteNotice)

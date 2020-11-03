@@ -9,7 +9,6 @@ class NoticeDetail extends Component {
         //读取携带过来的states数据
         const { title, author, department,  content} = this.props.location.state.notice
 
-
         const titleHead = (
             <span>
                 <LinkButton>
