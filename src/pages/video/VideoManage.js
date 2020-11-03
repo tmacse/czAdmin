@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Divider, message, Modal, Select, Button, Input, Card, Tag } from 'antd';
+import { Table, Divider, message, Modal, Select, Button, Input, Card, } from 'antd';
 import { PAGE_SIZE } from '../../utils/constants';
 import LinkButton from '../../components/link-button';
 import { reqVideos, reqDeleteVideos, reqSearchVideos } from '../../api'
@@ -56,13 +56,6 @@ class VideoManage extends Component {
             }
         })
     }
-    // //下载指定软件
-    // downloadSoftware = async (software) => {
-    //     const result = await reqDownloadSoftware(software.url)
-    //     if (result.err === 0) {
-    //         message.success('download')
-    //     }
-    // }
 
     componentDidMount() {
         this.getVideos(1)
@@ -97,21 +90,11 @@ class VideoManage extends Component {
                     //分页的配置对象
                     pagination={{ total, defaultPageSize: PAGE_SIZE, showQuickJumper: true, onChange: this.getVideos, }}
                     dataSource={videos}>
-                    <Column title="软件名称" dataIndex="name" />
-                    <Column title="描述" dataIndex="desc" />
-                    <Column title="属性" dataIndex="attr" />
+                    <Column title="视频名称" dataIndex="title" />
+                    <Column title="视频分类" dataIndex="attr" />
                     <Column title="上传时间" dataIndex='time' />
-                    <Column title="地址" dataIndex='url'
-                        render={url => (
-                            <span>
-                                {url.map(tag => (
-                                    <Tag color="blue" key={tag}>
-                                        {tag}
-                                    </Tag>
-                                ))}
-                            </span>
-                        )}
-                    />
+                    <Column title="导演" dataIndex='director' />
+                    <Column title="主要演员" dataIndex='main_actor' />
                     <Column
                         title="处理"
                         key="action"

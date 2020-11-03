@@ -1,8 +1,8 @@
-import React ,{Component} from 'react';
-import { Table, Divider,message, Modal,Select,Button,Input ,Card} from 'antd';
+import React, { Component } from 'react';
+import { Table, Divider, message, Modal, Select, Button, Input, Card } from 'antd';
 import { PAGE_SIZE } from '../../utils/constants';
 import LinkButton from '../../components/link-button';
-import { reqCheckedArticles, reqDeleteArticle, reqCheckedSearchArticles, reqArticleUpdateStatusToTop} from '../../api'
+import { reqCheckedArticles, reqDeleteArticle, reqCheckedSearchArticles } from '../../api'
 const { Column } = Table;
 const Option = Select.Option
 
@@ -15,7 +15,7 @@ class ManageNews extends Component {
         loading: false,//是否正在加载中
         searchName: '', // 搜索的关键字
         searchType: 'articleTitle', // 根据哪个字段搜索
-        btnStatus:'danger',
+        btnStatus: 'danger',
     }
     //获取指定页码的列表数据表示
     getNews = async (pageNum) => {
@@ -51,47 +51,23 @@ class ManageNews extends Component {
                 if (result.err === 0) {
                     message.success('删除文章成功!')
                     this.getNews(1)
-                }else if(result.err === -999){
+                } else if (result.err === -999) {
                     message.error('对不起，你没有该权限')
                 } else if (result.err === -888) {
                     message.error('登陆过期,请重新登陆')
-                }else{
+                } else {
                     message.error('other error')
                 }
             }
         })
     }
-    //上头条
-    checkedToTopArticle = (article) => {
-        Modal.confirm({
-            title: `确认该文章置顶上头条吗${article.title}吗?`,
-            onOk: async () => {
-                this.setState({
-                    btnStatus: "dashed"
-                }
-                    
-                )
-                const result = await reqArticleUpdateStatusToTop(article.title)
-                if (result.err === 0) {
-                    message.success('审核文章成功!')
-                    this.getNews(1)
-                }else if(result.err === -999){
-                    message.error('不要调皮，你没有该权限')
-                }else if(result.err===-888){
-                    message.error('登陆过期,请重新登陆')
-                }
-                    else{
-                    message.error('出现其他错误')
-                }
-            }
-        })
-    }
+
 
     componentDidMount() {
         this.getNews(1)
     }
     render() {
-        const { articles, total, loading,searchName,searchType,btnStatus} = this.state
+        const { articles, total, loading, searchName, searchType, btnStatus } = this.state
 
         const head = (
             <span>
@@ -118,52 +94,52 @@ class ManageNews extends Component {
         )
         return (
             <Card title={head}>
-            <Table
-                
-                rowKey='_id'
-                loading={loading}
-                //分页的配置对象
-                pagination={{
-                    total,
-                    defaultPageSize: PAGE_SIZE,
-                    showQuickJumper: true,
-                    onChange: this.getNews,
+                <Table
 
-                }}
-                dataSource={articles}>
-                <Column
-                    title='上头条'
-                    key='top'
-                    render={(article)=>(
-                        <Button
-                            type={btnStatus}
-                            onClick={() => this.checkedToTopArticle(article)}>上头条
+                    rowKey='_id'
+                    loading={loading}
+                    //分页的配置对象
+                    pagination={{
+                        total,
+                        defaultPageSize: PAGE_SIZE,
+                        showQuickJumper: true,
+                        onChange: this.getNews,
+
+                    }}
+                    dataSource={articles}>
+                    <Column
+                        title='上头条'
+                        key='top'
+                        render={(article) => (
+                            <Button
+                                type={btnStatus}
+                                onClick={() => this.checkedToTopArticle(article)}>上头条
                             </Button>
-                    )
-                    }
-                />
-                <Column title="新闻名" dataIndex="title"/>
-                <Column title="作者" dataIndex="author" />
-                <Column title="单位" dataIndex="department" />
-                <Column title="发表时间" dataIndex='time' />
-                <Column
-                    title="处理"
-                    key="action"
-                    render={(article) => (
-                        <span>
-                            <LinkButton onClick={() => this.props.history.push('/article/detail', { article })}>详情</LinkButton>
-                            <Divider type="vertical" /> 
-                            <LinkButton onClick={() => this.props.history.push('/writenews', article)}>修改</LinkButton>
-                            <Divider type='vertical'/>
-                            <LinkButton onClick={() => this.deleteArticle(article)}>删除</LinkButton>
-                            
-                        </span>
-                    )}
-                />
-            </Table>
+                        )
+                        }
+                    />
+                    <Column title="新闻名" dataIndex="title" />
+                    <Column title="作者" dataIndex="author" />
+                    <Column title="单位" dataIndex="department" />
+                    <Column title="发表时间" dataIndex='time' />
+                    <Column
+                        title="处理"
+                        key="action"
+                        render={(article) => (
+                            <span>
+                                <LinkButton onClick={() => this.props.history.push('/article/detail', { article })}>详情</LinkButton>
+                                <Divider type="vertical" />
+                                <LinkButton onClick={() => this.props.history.push('/writenews', article)}>修改</LinkButton>
+                                <Divider type='vertical' />
+                                <LinkButton onClick={() => this.deleteArticle(article)}>删除</LinkButton>
+
+                            </span>
+                        )}
+                    />
+                </Table>
             </Card>
         )
-        
-}
+
+    }
 }
 export default ManageNews;
