@@ -43,7 +43,24 @@ const menuList = [
       },
     ]
   },
+  {
+    title: '科室动态管理',
+    key: '/departmentMessage',
+    icon: 'book',
+    children: [
+      {
+        title: '发布科室动态',
+        key: '/departmentMessage/write',
+        icon: 'file-add'
+      },
+      {
+        title: '内容管理',
+        key: '/departmentMessage/manage',
+        icon: 'file'
+      },
 
+    ]
+  },
 
   {
     title: '视频管理',

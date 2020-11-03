@@ -1,13 +1,11 @@
 import React from 'react'
-import {Upload,Icon} from 'antd'
+import { Upload, Icon } from 'antd'
 // 引入编辑器组件
 import PropTypes from 'prop-types'
 import BraftEditor from 'braft-editor'
 import { ContentUtils } from 'braft-utils'
-// import { ImageUtils } from 'braft-finder'
 import { BASE_IMG_URL } from '../../utils/constants'
 // 引入编辑器样式
-// import htmlToDraft from 'html-to-draftjs'
 import 'braft-editor/dist/index.css'
 import 'braft-editor/dist/output.css'
 
@@ -24,7 +22,7 @@ export default class EditorDemo extends React.Component {
         super(props)
         const html = this.props.detail
         if (html) { // 如果有值, 根据html格式字符串创建一个对应的编辑对象
-            
+
             const editorState = BraftEditor.createEditorState(html)
             this.state = {
                 editorState,
@@ -119,20 +117,20 @@ export default class EditorDemo extends React.Component {
         // return draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()))
         return this.state.editorState.toHTML()
     }
-  
+
 
     handleEditorChange = (editorState) => {
         this.setState({ editorState })
     }
-   
+
     uploadImageCallBack = (file) => {
-        console.log(file.file.name,file.file.type)
+        console.log(file.file.name, file.file.type)
         return new Promise(
             (resolve, reject) => {
                 const xhr = new XMLHttpRequest()
                 xhr.open('POST', '/articlesImg/uploads')
                 const data = new FormData()
-               console.log(file)
+                console.log(file)
                 data.append('article-img', file.file)
                 xhr.send(data)
                 console.log(data)
@@ -192,12 +190,12 @@ export default class EditorDemo extends React.Component {
         return (
             <div>
                 <BraftEditor
-                    excludeControls ={['media']}
-                    contentStyle = {{minHeight:600,fontSize:'16px',lineHeight:'0px'}}
+                    excludeControls={['media']}
+                    contentStyle={{ minHeight: 600, fontSize: '16px', lineHeight: '0px' }}
                     value={editorState}
                     onChange={this.handleEditorChange}
                     extendControls={extendControls}
-                    imageControls = {imageControls}
+                    imageControls={imageControls}
                 />
             </div>
         )

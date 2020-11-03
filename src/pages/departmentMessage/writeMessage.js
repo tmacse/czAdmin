@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Card, Form, Input, Button, message} from 'antd';
-// import RichTextEditor from '../newsmanage/RichTextEditor'
-import { BASE_ZZ_DEPARTMENT } from '../../utils/constants'
+import { Card, Form, Input, Button, message } from 'antd';
+import { BASE_ZZ_DEPARTMENT } from '../../utils/constants' //引入强军动态的单位
 import { reqAddOrUpdateDepartmentMessage } from '../../api/index';
 import EditorDemo from '../newsmanage/RichText';
 const { Item } = Form
@@ -109,7 +108,7 @@ class WriteMessage extends Component {
 
                     <Item label="详情" labelCol={{ span: 2 }} wrapperCol={{ span: 20 }}>
                         {/* <RichTextEditor ref={this.editor} detail = {this.Dmessage.content}/> */}
-                        <EditorDemo ref={this.editor} detail={this.Dmessage.content}/>
+                        <EditorDemo ref={this.editor} detail={this.Dmessage.content} />
                     </Item>
 
                     <Item>

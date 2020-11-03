@@ -7,7 +7,7 @@ import { EditorState, convertToRaw, ContentState } from 'draft-js'
 import { Editor } from 'react-draft-wysiwyg'
 import draftToHtml from 'draftjs-to-html'
 import htmlToDraft from 'html-to-draftjs'
-import {BASE_IMG_URL} from '../../utils/constants'
+import { BASE_IMG_URL } from '../../utils/constants'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 import './index.css'
 
@@ -62,14 +62,14 @@ export default class RichTextEditor extends Component {
                 const xhr = new XMLHttpRequest()
                 xhr.open('POST', '/articlesImg/uploads')
                 const data = new FormData()
-                
+
                 data.append('article-img', file)
                 xhr.send(data)
                 console.log(data)
                 xhr.addEventListener('load', () => {
                     const response = JSON.parse(xhr.responseText)
                     console.log(response)
-                    const url = BASE_IMG_URL+ response.data.name // 得到图片的url
+                    const url = BASE_IMG_URL + response.data.name // 得到图片的url
                     // console.log(url)
                     resolve({ data: { link: url } })
                 })
@@ -95,18 +95,21 @@ export default class RichTextEditor extends Component {
                 spellCheck
                 localization={{ locale: 'zh', translations: { 'generic.add': '添加' } }}
                 toolbar={{
-                    fontFamily: { options: ['宋体', '仿宋','黑体', '楷体', '微软雅黑',
-                                'Arial', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Verdana',] },
+                    fontFamily: {
+                        options: ['宋体', '仿宋', '黑体', '楷体', '微软雅黑',
+                            'Arial', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Verdana',]
+                    },
                     history: { inDropdown: true },
                     image: {
-                        alignmentEnabled: true, 
-                        uploadCallback: this.uploadImageCallBack ,  
+                        alignmentEnabled: true,
+                        uploadCallback: this.uploadImageCallBack,
                         alt: { present: false, mandatory: false },
                         inputAccept: 'image/*',
                         defaultSize: {
                             height: '400px',
                             width: '600px',
-                        }, },
+                        },
+                    },
                 }}
             />
         )

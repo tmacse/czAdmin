@@ -16,7 +16,7 @@ class MessageDetail extends Component {
                         onClick={() => this.props.history.goBack()}
                     />
                 </LinkButton>
-                <span>科室动态（新闻）详情</span>
+                <span>强军动态详情</span>
             </span>
         )
         return (
