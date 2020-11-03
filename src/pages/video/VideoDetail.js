@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import {Card,Icon, List} from 'antd'
 import './index.css'
-import LinkButton from '../../../components/link-button';
-import { BASE_VIDEO_URL } from '../../../utils/constants';
+import LinkButton from '../../components/link-button';
+import { BASE_VIDEO_URL } from '../../utils/constants';
 import { withRouter } from "react-router-dom";
 const Item = List.Item
 

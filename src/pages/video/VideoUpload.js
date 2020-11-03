@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Form, Input, Button, message, Select } from 'antd';
 import VideoWall from './VideoWall'
-import { reqAddVideos } from '../../../api'
+import { reqAddVideos } from '../../api'
 import './index.css'
 const { TextArea } = Input
 const { Item } = Form
@@ -21,9 +21,9 @@ class VideoUpload extends Component {
                 //1.收集数据，2调用接口请求函数添加3.根据结果提示
                 // console.log('ok')
 
-                const { name, desc, attr, language,main_actor,director } = values
+                const { name, desc, attr, language, main_actor, director } = values
                 const url = this.pw.current.getUrls()
-                const video = { name, desc, attr, url, language, main_actor, director}
+                const video = { name, desc, attr, url, language, main_actor, director }
                 console.log(video)
                 const result = await reqAddVideos(video)
                 console.log(result)

@@ -11,7 +11,7 @@ import ajax from './ajax'
 // import { Base } from 'bizcharts';
 
 // const BASE = 'http://28.27.40.126:4000'
-const BASE = 'http://localhost:5000'
+const BASE = ''
 // 登陆
 export const reqGetJHXB = () => ajax(BASE + '/jhxb')
 export const reqGetSDJD = () => ajax(BASE + '/sdjd')

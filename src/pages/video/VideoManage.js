@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Table, Divider, message, Modal, Select, Button, Input, Card,Tag } from 'antd';
-import { PAGE_SIZE } from '../../../utils/constants';
-import LinkButton from '../../../components/link-button';
-import { reqVideos, reqDeleteVideos, reqSearchVideos} from '../../../api'
+import { Table, Divider, message, Modal, Select, Button, Input, Card, Tag } from 'antd';
+import { PAGE_SIZE } from '../../utils/constants';
+import LinkButton from '../../components/link-button';
+import { reqVideos, reqDeleteVideos, reqSearchVideos } from '../../api'
 const { Column } = Table;
 const Option = Select.Option
 
@@ -101,7 +101,7 @@ class VideoManage extends Component {
                     <Column title="描述" dataIndex="desc" />
                     <Column title="属性" dataIndex="attr" />
                     <Column title="上传时间" dataIndex='time' />
-                    <Column title="地址"  dataIndex='url'
+                    <Column title="地址" dataIndex='url'
                         render={url => (
                             <span>
                                 {url.map(tag => (

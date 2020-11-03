@@ -2,7 +2,7 @@
 包含一些常量值的模块
  */
 // const BASE = 'http://28.27.40.126:4000'
-const BASE = 'http://localhost:5000'
+const BASE = ''
 export const PAGE_SIZE = 10 // 每页显示的记录数
 export const BASE_IMG_URL = BASE + '/public/image/articles/' // 上传图片的基础路径
 export const BASE_PICSHOW_URL = BASE + '/public/image/picshow/'

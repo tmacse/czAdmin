@@ -1,6 +1,6 @@
 import React from 'react'
 import { Upload, Icon, Modal, message } from 'antd'
-import { reqDeleteVideo } from '../../../api'
+import { reqDeleteVideo } from '../../api'
 /*
 用于视频上传的组件
  */
