@@ -7,12 +7,10 @@ import LeftNav from '../../components/left-nav'
 import Header from '../../components/header'
 import Home from '../home/home'
 import WriteNews from '../newsmanage/WriteNews';
-import CheckNews from '../newsmanage/CheckNews';
 import ManageNews from '../newsmanage/ManageNews';
 import Role from '../role/role'
 import User from '../user/user'
 import NotFound from '../not-found/not-found'
-import Order from '../order/order'
 import BannerManage from '../bannermanage/BannerManage';
 import ArticleDetail from '../newsmanage/ArticleDetail';
 import ManageNotice from '../noticesmanage/ManageNotice';
@@ -62,7 +60,6 @@ export default class Admin extends Component {
               <Route path='/home' component={Home} />
               <Route path='/success' component={Success}></Route>
               <Route path='/writenews' component={WriteNews}></Route>
-              <Route path='/checknews' component={CheckNews}></Route>
               <Route path='/managenews' component={ManageNews}></Route>
               <Route path='/noticesManage/manage' component={ManageNotice}></Route>
               <Route path='/noticesManage/add' component={WriteNotice}></Route>
@@ -78,11 +75,8 @@ export default class Admin extends Component {
               <Route path='/departmentMessage/detail' component={MessageDetail}></Route>
               <Route path='/article/detail' component={ArticleDetail}></Route>
               <Route path='/notice/detail' component={NoticeDetail}></Route>
-
-
               <Route path='/user' component={User} />
               <Route path='/role' component={Role} />
-              <Route path="/order" component={Order} />
               <Route component={NotFound} />
             </Switch>
           </Content>

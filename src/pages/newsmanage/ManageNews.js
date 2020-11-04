@@ -15,7 +15,6 @@ class ManageNews extends Component {
         loading: false,//是否正在加载中
         searchName: '', // 搜索的关键字
         searchType: 'articleTitle', // 根据哪个字段搜索
-        btnStatus: 'danger',
     }
     //获取指定页码的列表数据表示
     getNews = async (pageNum) => {
@@ -67,7 +66,7 @@ class ManageNews extends Component {
         this.getNews(1)
     }
     render() {
-        const { articles, total, loading, searchName, searchType, btnStatus } = this.state
+        const { articles, total, loading, searchName, searchType } = this.state
 
         const head = (
             <span>
@@ -107,17 +106,6 @@ class ManageNews extends Component {
 
                     }}
                     dataSource={articles}>
-                    <Column
-                        title='上头条'
-                        key='top'
-                        render={(article) => (
-                            <Button
-                                type={btnStatus}
-                                onClick={() => this.checkedToTopArticle(article)}>上头条
-                            </Button>
-                        )
-                        }
-                    />
                     <Column title="新闻名" dataIndex="title" />
                     <Column title="作者" dataIndex="author" />
                     <Column title="单位" dataIndex="department" />

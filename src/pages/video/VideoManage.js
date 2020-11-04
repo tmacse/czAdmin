@@ -42,11 +42,11 @@ class VideoManage extends Component {
 */
     deleteVideo = (video) => {
         Modal.confirm({
-            title: `确认删除****[${video.name}]****吗?`,
+            title: `确认删除****[${video.title}]****吗?`,
             onOk: async () => {
-                const result = await reqDeleteVideos(video.name)
+                const result = await reqDeleteVideos(video.title)
                 if (result.err === 0) {
-                    message.success('删除软件成功!')
+                    message.success('删除视频成功!')
                     this.getVideos(1)
                 } else if (result.err === -888) {
                     message.error('登陆过期,请重新登陆')
@@ -70,7 +70,7 @@ class VideoManage extends Component {
                     style={{ width: 150 }}
                     onChange={value => this.setState({ searchType: value })}
                 >
-                    <Option value='videoName'>按名搜索</Option>
+                    <Option value='videoName'>按视频名搜索</Option>
                     <Option value='videoDesc'>按描述搜索</Option>
                     <Option value='videoAttr'>按类型搜索</Option>
 

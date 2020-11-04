@@ -10,7 +10,6 @@ const { Option } = Select;
 class VideoUpload extends Component {
     constructor(props) {
         super(props)
-
         // 创建用来保存ref标识的标签对象的容器
         this.pw = React.createRef()
     }
@@ -19,18 +18,12 @@ class VideoUpload extends Component {
         this.props.form.validateFields(async (error, values) => {
             if (!error) {
                 //1.收集数据，2调用接口请求函数添加3.根据结果提示
-                // console.log('ok')
-
-                const { name, desc, attr, language, main_actor, director } = values
+                const { title, desc, attr, main_actor, director } = values
                 const url = this.pw.current.getUrls()
-                const video = { name, desc, attr, url, language, main_actor, director }
-                console.log(video)
+                const video = { title, desc, attr, url, main_actor, director }
                 const result = await reqAddVideos(video)
-                console.log(result)
                 if (result.err === 0) {
-                    message.success('软件上传成功')
-                    //新闻发送成功后，跳转到新闻预览页面 
-
+                    message.success('视频上传成功')
                     this.props.history.push('/success', { video })
                 }
                 else {
@@ -38,7 +31,6 @@ class VideoUpload extends Component {
                 }
             }
         })
-
     }
     render() {
         const formItemLayout = {
@@ -58,21 +50,22 @@ class VideoUpload extends Component {
                 <Form {...formItemLayout}>
                     <Item label="视频分类">
                         {getFieldDecorator('attr', {
-                            rules: [{ required: true, message: '必须选择软件分类!' }],
+                            rules: [{ required: true, message: '必须选择视频分类!' }],
                         })(
                             <Select
                                 placeholder="请选择以下视频分类"
                                 onChange={this.handleSelectChange}
                             >
-                                <Option value="动作片">动作片</Option>
-                                <Option value="记录片">记录片</Option>
-                                <Option value="言情片">言情片</Option>
+                                <Option value="强军影视">强军影视</Option>
+                                <Option value="练兵备战">练兵备战</Option>
+                                <Option value="创意视频">创意视频</Option>
+                                <Option value="强军新闻">强军新闻</Option>
                             </Select>,
                         )}
                     </Item>
                     <Item label='视频名'>
                         {
-                            getFieldDecorator('name', {
+                            getFieldDecorator('title', {
                                 initialValue: '',
                                 rules: [
                                     { required: true, message: '必须输入视频名称' },
@@ -102,21 +95,6 @@ class VideoUpload extends Component {
                                 ]
                             })(<Input placeholder='请输入导演' />)
                         }
-                    </Item>
-                    <Item label="视频语言">
-                        {getFieldDecorator('language', {
-                            rules: [{ required: true, message: '必须选择视频语言!' }],
-                        })(
-                            <Select
-                                placeholder="请选择以下视频语言"
-                                onChange={this.handleSelectChange}
-                            >
-                                <Option value="普通话">普通话</Option>
-                                <Option value="英语">英语</Option>
-                                <Option value="粤语">粤语</Option>
-                                <Option value="其它">其它</Option>
-                            </Select>,
-                        )}
                     </Item>
                     <Item label='视频描述'>
                         {

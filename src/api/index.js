@@ -29,6 +29,8 @@ export const reqAddVideos = (video) => ajax(BASE + '/video/add', video, 'POST')
 
 //制定删除新闻缩略图y
 export const reqDeleteArticleImg = (name) => ajax(BASE + '/articlesImg/delete', { name }, 'POST')
+//删除文章中的文件
+export const reqDeleteFile = (name) => ajax(BASE + '/file/delete', { name }, 'POST')
 
 //指定删除视频
 export const reqDeleteVideo = (name) => ajax(BASE + '/videoFile/delete', { name }, 'POST')
@@ -95,7 +97,7 @@ export const reqSearchVideos = ({ pageNum, pageSize, searchName, searchType }) =
 export const reqVideos = (pageNum, pageSize) => ajax(BASE + '/video/list', { pageNum, pageSize })
 //获取分页的视频
 //删除视频
-export const reqDeleteVideos = (name) => ajax(BASE + '/video/delete', { name }, 'POST')
+export const reqDeleteVideos = (title) => ajax(BASE + '/video/delete', { title }, 'POST')
 //增加通知
 export const reqAddNotices = (notice) => ajax(BASE + '/notices/add', notice, 'POST')
 //增加教案

@@ -1,10 +1,10 @@
 import React from 'react'
 import { Upload, Icon, Modal, message } from 'antd'
-import { reqDeleteSoftware } from '../../api'
+import { reqDeleteFile } from '../../api'
 /*
-用于软件上传的组件
+用于文章中文件的上传的组件
  */
-export default class SoftwareWall extends React.Component {
+export default class FileWall extends React.Component {
 
 
     state = {
@@ -34,34 +34,33 @@ export default class SoftwareWall extends React.Component {
     };
 
     /*
-    file: 当前操作的视频文件(上传/删除)
-    fileList: 所有已上传视频文件对象的数组
+    file: 当前操作的文件(上传/删除)
+    fileList: 所有已上传文件对象的数组
      */
     handleChange = async ({ file, fileList }) => {
         console.log('handleChange()', file.status, fileList.length, file === fileList[fileList.length - 1])
 
         // 一旦上传成功, 将当前上传的file的信息修正(name, url)
         if (file.status === 'done') {
-            const result = file.response  // {status: 0, data: {name: 'xxx.jpg', url: '图片地址'}}
+            const result = file.response  // {status: 0, data: {name: 'xxx.docx', url: '文件地址'}}
             console.log(result)
             if (result.status === 0) {
-                message.success('上传软件成功!')
+                message.success('上传文件成功!')
                 const { name, url } = result.data
                 file = fileList[fileList.length - 1]
                 file.name = name
                 file.url = url
             } else {
-                message.error('上传软件失败')
+                message.error('上传文件失败')
             }
-        } else if (file.status === 'removed') { // 删除图片
-            const result = await reqDeleteSoftware(file.name)
+        } else if (file.status === 'removed') { // 删除文件
+            const result = await reqDeleteFile(file.name)
             if (result.status === 0) {
-                message.success('删除软件成功!')
+                message.success('删除文件成功!')
             } else {
-                message.error('删除软件失败!')
+                message.error('删除文件失败!')
             }
         }
-
         // 在操作(上传/删除)过程中更新fileList状态
         this.setState({ fileList })
     };
@@ -76,13 +75,13 @@ export default class SoftwareWall extends React.Component {
         );
         return (
             <div>
-               
+
                 <Upload
-                    action="/softwareFile/uploads" /*上传软件的接口地址*/
-                    accept=".exe, .rar, .zip, .msi"  /*只接收软件格式*/
-                    name='software' /*请求参数名*/
+                    action="/file/uploads" /*上传文件的接口地址*/
+                    accept=".doc,.docx,.xls,.xlsx,.txt,.pdf,.wps,.ppt,.pptx"  /*只接收文件格式*/
+                    name='file' /*请求参数名*/
                     listType="picture-card"  /*卡片样式*/
-                    fileList={fileList}  /*所有已上传图片文件对象的数组*/
+                    fileList={fileList}  /*所有已上传文章文件对象的数组*/
                     onPreview={this.handlePreview}
                     onChange={this.handleChange}
                 >

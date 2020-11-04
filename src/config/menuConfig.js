@@ -32,11 +32,6 @@ const menuList = [
         icon: 'bars'
       },
       {
-        title: '审核文章',
-        key: '/checknews',
-        icon: 'tool'
-      },
-      {
         title: '管理文章',
         key: '/managenews',
         icon: 'search'
