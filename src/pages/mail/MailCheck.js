@@ -62,7 +62,7 @@ export default class MailCheck extends Component {
                     }}
                     dataSource={UnCheckedMails} >
                     <Column title="投递对象" dataIndex="leader"
-                        render={(leader) => (leader) === "commissar" ? '政委' : '旅长'} />
+                        render={(leader) => (leader) === "zz" ? '站长' : (leader) === "zw" ? '政委' : (leader) === 'zr' ? '主任' : '纪委'} />
                     <Column title="标题" dataIndex="title" />
                     <Column title="投递人" dataIndex="name" />
                     <Column title="投递单位" dataIndex="department" />

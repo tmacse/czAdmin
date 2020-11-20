@@ -8,7 +8,7 @@
 import ajax from './ajax'
 
 // const BASE = 'http://28.27.40.126:4000'
-const BASE = ''
+const BASE = 'http://28.27.40.77:5000'
 // 登陆
 export const reqLogin = (username, password) => ajax(BASE + '/user/login', { username, password }, 'POST')
 

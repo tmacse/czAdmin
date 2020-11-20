@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {Redirect} from 'react-router-dom'
+import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import {
   Form,
   Icon,
@@ -9,7 +9,7 @@ import {
 } from 'antd'
 import './login.less'
 // import logo from '../../assets/images/logo.png'
-import {reqLogin} from '../../api'
+import { reqLogin } from '../../api'
 import memoryUtils from '../../utils/memoryUtils'
 import storageUtils from '../../utils/storageUtils'
 
@@ -33,10 +33,10 @@ class Login extends Component {
       if (!err) {
         // console.log('提交登陆的ajax请求', values)
         // 请求登陆
-        const {username, password} = values
+        const { username, password } = values
         const result = await reqLogin(username, password) // {status: 0, data: user}  {status: 1, msg: 'xxx'}
         console.log('请求成功', result)
-        if (result.status===0) { // 登陆成功
+        if (result.status === 0) { // 登陆成功
           // 提示登陆成功
           message.success('登陆成功')
           // 保存user
@@ -76,11 +76,11 @@ class Login extends Component {
     */
   validatePwd = (rule, value, callback) => {
     console.log('validatePwd()', rule, value)
-    if(!value) {
+    if (!value) {
       callback('密码必须输入')
-    } else if (value.length<4) {
+    } else if (value.length < 4) {
       callback('密码长度不能小于4位')
-    } else if (value.length>12) {
+    } else if (value.length > 12) {
       callback('密码长度不能大于12位')
     } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
       callback('密码必须是英文、数字或下划线组成')
@@ -90,12 +90,12 @@ class Login extends Component {
     // callback('xxxx') // 验证失败, 并指定提示的文本
   }
 
-  render () {
+  render() {
 
     // 如果用户已经登陆, 自动跳转到管理界面
     const user = memoryUtils.user
-    if(user && user._id) {
-      return <Redirect to='/'/>
+    if (user && user._id) {
+      return <Redirect to='/' />
     }
 
     // 得到具强大功能的form对象
@@ -128,7 +128,7 @@ class Login extends Component {
                     { required: true, whitespace: true, message: '用户名必须输入' },
                     { min: 1, message: '用户名至少4位' },
                     { max: 12, message: '用户名最多12位' },
-                    {/* { pattern: /^[a-zA-Z0-9_]+$/, message: '用户名必须是英文、数字或下划线组成' }, */}
+                    {/* { pattern: /^[a-zA-Z0-9_]+$/, message: '用户名必须是英文、数字或下划线组成' }, */ }
                   ],
                   initialValue: 'admin', // 初始值
                 })(
