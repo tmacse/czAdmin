@@ -29,6 +29,7 @@ import Success from '../../components/result/Success'
 import MailManage from '../mail/MailManage'
 import MailCheck from '../mail/MailCheck'
 import MailDetail from '../mail/MailDetail'
+import TruncVideo from '../video/TruncVideo'
 
 
 const { Footer, Sider, Content } = Layout
@@ -66,6 +67,7 @@ export default class Admin extends Component {
               <Route path='/bannermanage' component={BannerManage}></Route>
               <Route path='/mdeia/videoupload' component={VideoUpload}></Route>
               <Route path='/media/videodetail' component={VideoDetail}></Route>
+              <Route path='/media/truncvideo' component={TruncVideo}></Route>
               <Route path='/mdeia/videomanage' component={VideoManage}></Route>
               <Route path='/bookfile/write' component={WriteBookFile}></Route>
               <Route path='/bookfile/manage' component={BookFileManage}></Route>

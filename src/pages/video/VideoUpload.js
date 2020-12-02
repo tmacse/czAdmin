@@ -3,6 +3,7 @@ import { Card, Form, Input, Button, message, Select } from 'antd';
 import VideoWall from './VideoWall'
 import { reqAddVideos } from '../../api'
 import './index.css'
+// import TruncVideo from './TruncVideo';
 const { TextArea } = Input
 const { Item } = Form
 const { Option } = Select;
@@ -12,6 +13,9 @@ class VideoUpload extends Component {
         super(props)
         // 创建用来保存ref标识的标签对象的容器
         this.pw = React.createRef()
+        // this.state = {
+        //     url: '',
+        // }
     }
     submit = () => {
         // 进行表单验证, 如果通过了, 才发送请求
@@ -19,8 +23,10 @@ class VideoUpload extends Component {
             if (!error) {
                 //1.收集数据，2调用接口请求函数添加3.根据结果提示
                 const { title, desc, attr, main_actor, director } = values
-                const url = this.pw.current.getUrls()
-                const video = { title, desc, attr, url, main_actor, director }
+                const url = this.pw.current.getUrls().file;
+                const thumbnail = this.pw.current.getUrls().thumbnail
+                console.log('thumbnail', thumbnail)
+                const video = { title, desc, attr, url, main_actor, director, thumbnail }
                 const result = await reqAddVideos(video)
                 if (result.err === 0) {
                     message.success('视频上传成功')
@@ -110,6 +116,7 @@ class VideoUpload extends Component {
                     <Item className='soft'>
                         <VideoWall ref={this.pw} />
                     </Item>
+
                     <Item>
                         <Button style={{ marginLeft: '14%' }}
                             type='primary' block

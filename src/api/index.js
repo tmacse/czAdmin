@@ -5,10 +5,9 @@
 
 基本要求: 能根据接口文档定义接口请求函数
  */
+import { BASE } from '../utils/constants'
 import ajax from './ajax'
 
-// const BASE = 'http://28.27.40.126:4000'
-const BASE = 'http://28.27.40.77:5000'
 // 登陆
 export const reqLogin = (username, password) => ajax(BASE + '/user/login', { username, password }, 'POST')
 

@@ -72,6 +72,11 @@ const menuList = [
         key: '/mdeia/videomanage',
         icon: 'video-camera'
       },
+      {
+        title: '视频截取',
+        key: '/media/truncvideo',
+        icon: 'upload'
+      },
     ]
   },
 
