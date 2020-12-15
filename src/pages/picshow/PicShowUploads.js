@@ -1,23 +1,18 @@
 import React, { Component } from 'react';
-import PictureWall from './pictures-wall'
-import { Card, Form, Input, Button, message, Select } from 'antd';
+import PicShowWall from './PicShowWall'
+import { Card, Form, Input, Button, message } from 'antd';
 // import RichTextEditor from './RichTextEditor';
-import EditorDemo from './RichText.js'
 import { BASE_ALL_DEPARTMENT } from '../../utils/constants'
-import { reqAddOrUpdateArticle } from '../../api/index';
-import FileWall from './FileWall';
+import { reqAddOrUpdatePicShow } from '../../api/index';
 const { Item } = Form
-// const { TextArea } = Input
-const { Option } = Select;
 
 
-class WriteNews extends Component {
+
+class PicShowUploads extends Component {
     constructor(props) {
         super(props)
         // 创建用来保存ref标识的标签对象的容器
-        this.pw = React.createRef() //创建保存缩略图的容器
-        this.editor = React.createRef() //创建保存编辑器的容器
-        this.fw = React.createRef() //创建用来保存文件地址的容器
+        this.pw = React.createRef()
     }
 
     submit = () => {
@@ -27,18 +22,16 @@ class WriteNews extends Component {
                 //1.收集数据，2调用接口请求函数添加3.根据结果提示
                 // console.log('ok')
 
-                const { title, author, department, category } = values//获取文章的标题，作者，单位和分类
-                const thumbnail = this.pw.current.getImgs()  //获取缩略图
-                const content = this.editor.current.getDetail()  //通过编辑器获得文章的内容
-                const download_url = this.fw.current.getUrls()//获取文章中文件的下载地址
-                const article = { title, author, department, thumbnail, category, content, download_url }
+                const { title, author, department } = values
+                const pics = this.pw.current.getImgs()
+                const article = { title, author, department, pics }
                 // 如果是更新, 需要添加_id
                 if (this.isUpdate) {
                     article._id = this.article._id
                 }
 
                 // 2. 调用接口请求函数去添加/更新
-                const result = await reqAddOrUpdateArticle(article)
+                const result = await reqAddOrUpdatePicShow(article)
                 console.log(result.err)
                 // 3. 根据结果提示
                 if (result.err === 0) {
@@ -83,33 +76,18 @@ class WriteNews extends Component {
         return (
             <Card>
                 <Form {...formItemLayout}>
-                    <Item label="文章分类">
-                        {getFieldDecorator('category', {
-                            initialValue: this.article.category,
-                            rules: [{ required: true, message: '必须选择文章分类!' }],
-                        })(
-                            <Select
-                                placeholder="请选择以下文章分类"
-                                onChange={this.handleSelectChange}
-                            >
-                                <Option value="精品课程">精品课程</Option>
-                                <Option value="案例分析">案例分析</Option>
-                                <Option value="活动概况">新闻中心</Option>
-                            </Select>,
-                        )}
-                    </Item>
-                    <Item label='文章名'>
+                    <Item label='图片组名'>
                         {
                             getFieldDecorator('title', {
                                 initialValue: this.article.title,
                                 rules: [
                                     { required: true, message: '必须输入文章名称' },
-                                    { max: 50, message: '输入标题过长' }//设置标题名过长错误提示的规则
+                                    { max: 60, message: '输入标题过长' }//设置标题名过长错误提示的规则
                                 ]
                             })(<Input placeholder='请输入文章名称' />)
                         }
                     </Item>
-                    <Item label='文章作者'>
+                    <Item label='图片组作者'>
                         {
                             getFieldDecorator('author', {
                                 initialValue: this.article.author,
@@ -121,7 +99,7 @@ class WriteNews extends Component {
                         }
 
                     </Item>
-                    <Item label='文章单位'>
+                    <Item label='图片组单位'>
                         {
                             getFieldDecorator('department', {
                                 initialValue: this.article.department,
@@ -134,15 +112,10 @@ class WriteNews extends Component {
                         }
 
                     </Item>
-                    <Item label='文章封面图'>
-                        <PictureWall ref={this.pw} imgs={this.article.thumbnail} />
+                    <Item label='图片上传图'>
+                        <PicShowWall ref={this.pw} imgs={this.article.pics} />
                     </Item>
-                    <Item label="文章详情" labelCol={{ span: 2 }} wrapperCol={{ span: 20 }}>
-                        <EditorDemo ref={this.editor} detail={this.article.content} />
-                    </Item>
-                    <Item label='文件上传'>
-                        <FileWall ref={this.fw} />
-                    </Item>
+
                     <Item>
                         <Button style={{ marginLeft: '10%' }}
                             type='primary'
@@ -153,7 +126,7 @@ class WriteNews extends Component {
         )
     }
 }
-export default Form.create()(WriteNews)
+export default Form.create()(PicShowUploads)
 
 
 /*

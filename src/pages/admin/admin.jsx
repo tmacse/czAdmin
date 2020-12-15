@@ -29,7 +29,10 @@ import Success from '../../components/result/Success'
 import MailManage from '../mail/MailManage'
 import MailCheck from '../mail/MailCheck'
 import MailDetail from '../mail/MailDetail'
-import TruncVideo from '../video/TruncVideo'
+import TruncVideo from '../video/TruncVideo';
+import PicShowUploads from '../picshow/PicShowUploads';
+import PicShowManage from '../picshow/PicShowManage';
+import PicShowDetail from '../picshow/PicShowDetail';
 
 
 const { Footer, Sider, Content } = Layout
@@ -59,6 +62,9 @@ export default class Admin extends Component {
               <Route path='/mail/unchecked' exact component={MailCheck}></Route>
               <Route path='/mail/checked' component={MailManage}></Route>
               <Route path='/home' component={Home} />
+              <Route path='/picshow/manage' component={PicShowManage}></Route>
+              <Route path='/picshow/uploads' component={PicShowUploads} />
+              <Route path='/picshow/detail' component={PicShowDetail} />
               <Route path='/success' component={Success}></Route>
               <Route path='/writenews' component={WriteNews}></Route>
               <Route path='/managenews' component={ManageNews}></Route>

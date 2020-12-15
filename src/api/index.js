@@ -122,3 +122,15 @@ export const reqUsers = () => ajax(BASE + '/user/list')
 export const reqDeleteUser = (userId) => ajax(BASE + '/user/delete', { userId }, 'POST')
 // 添加/更新用户
 export const reqAddOrUpdateUser = (user) => ajax(BASE + '/user/' + (user._id ? 'update' : 'add'), user, 'POST')
+
+//指定删除picshow 
+export const reqDeletePicShowImg = (name) => ajax(BASE + '/picshowImg/delete', { name }, 'POST')
+//基层风采图片请求
+export const reqPicShow = (pageNum, pageSize) => ajax(BASE + '/picshow/list', { pageNum, pageSize })
+export const reqSearchPicshow = ({ pageNum, pageSize, searchName, searchType }) => ajax(BASE + '/picshow/search', {
+  pageNum,
+  pageSize,
+  [searchType]: searchName,
+})
+export const reqAddOrUpdatePicShow = (picshow) => ajax(BASE + '/picshow/' + (picshow._id ? 'update' : 'add'), picshow, 'POST')
+export const reqDeletePicShow = (title) => ajax(BASE + '/picshow/delete', { title }, 'POST')

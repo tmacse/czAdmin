@@ -22,7 +22,7 @@ const menuList = [
       },]
   },
   {
-    title: '精品课程',
+    title: '课程、案例、新闻',
     key: '/newsManage',
     icon: 'appstore',
     children: [ // 子菜单列表
@@ -35,6 +35,23 @@ const menuList = [
         title: '管理文章',
         key: '/managenews',
         icon: 'search'
+      },
+    ]
+  },
+  {
+    title: '基层风采管理',
+    key: '/picshow',
+    icon: 'build',
+    children: [
+      {
+        title: '图片上传',
+        key: '/picshow/uploads',
+        icon: 'line-chart'
+      },
+      {
+        title: '图片管理',
+        key: '/picshow/manage',
+        icon: 'line-chart'
       },
     ]
   },
@@ -71,11 +88,6 @@ const menuList = [
         title: '视频管理',
         key: '/mdeia/videomanage',
         icon: 'video-camera'
-      },
-      {
-        title: '视频截取',
-        key: '/media/truncvideo',
-        icon: 'upload'
       },
     ]
   },
