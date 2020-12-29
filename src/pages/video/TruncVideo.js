@@ -97,6 +97,7 @@ export default class TruncVideo extends Component {
             //4.用鼠标的位置减去盒子的位置赋值给盒子的内容。  
             let targetx = pagex - xx;
             let targety = pagey - yy;
+            console.log(targety)
             // this.innerHTML = "鼠标在盒子中的X坐标为：" + targetx + "px;<br>鼠标在盒子中的Y坐标为：" + targety + "px;"
 
             let preview_width = preview.offsetWidth

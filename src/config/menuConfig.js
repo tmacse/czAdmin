@@ -22,12 +22,12 @@ const menuList = [
       },]
   },
   {
-    title: '课程、案例、新闻',
+    title: '课程、案例、新闻、法规',
     key: '/newsManage',
     icon: 'appstore',
     children: [ // 子菜单列表
       {
-        title: '写文章',
+        title: '写新闻（案例、法规等）',
         key: '/writenews',
         icon: 'bars'
       },
@@ -90,6 +90,11 @@ const menuList = [
         icon: 'video-camera'
       },
     ]
+  },
+  {
+    title: '更新值班首长',
+    key: '/leader/write',
+    icon: 'user'
   },
 
   {

@@ -8,6 +8,8 @@
 import { BASE } from '../utils/constants'
 import ajax from './ajax'
 
+//添加首长，参谋的名字
+export const reqAddLeaderName = (leadername) => ajax(BASE + '/leader/add', leadername, 'POST')
 // 登陆
 export const reqLogin = (username, password) => ajax(BASE + '/user/login', { username, password }, 'POST')
 

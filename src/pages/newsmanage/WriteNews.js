@@ -94,7 +94,8 @@ class WriteNews extends Component {
                             >
                                 <Option value="精品课程">精品课程</Option>
                                 <Option value="案例分析">案例分析</Option>
-                                <Option value="活动概况">新闻中心</Option>
+                                <Option value="活动概况">活动概况</Option>
+                                <Option value="强军政策">强军政策</Option>
                             </Select>,
                         )}
                     </Item>

@@ -33,6 +33,7 @@ import TruncVideo from '../video/TruncVideo';
 import PicShowUploads from '../picshow/PicShowUploads';
 import PicShowManage from '../picshow/PicShowManage';
 import PicShowDetail from '../picshow/PicShowDetail';
+import WriteLeader from '../leader/WriteLeader'
 
 
 const { Footer, Sider, Content } = Layout
@@ -85,6 +86,7 @@ export default class Admin extends Component {
               <Route path='/notice/detail' component={NoticeDetail}></Route>
               <Route path='/user' component={User} />
               <Route path='/role' component={Role} />
+              <Route path='/leader/write' component={WriteLeader}></Route>
               <Route component={NotFound} />
             </Switch>
           </Content>
