@@ -124,6 +124,23 @@ const menuList = [
       },
     ]
   },
+  {
+    title: '双争评比',
+    key: '/quantization',
+    icon: 'play-square',
+    children: [
+      {
+        title: '先进单位',
+        key: '/quantization/unit',
+        icon: 'upload'
+      },
+      {
+        title: '先进个人',
+        key: '/quantization/solo',
+        icon: 'video-camera'
+      },
+    ]
+  }
 ]
 
 export default menuList

@@ -8,6 +8,10 @@
 import { BASE } from '../utils/constants'
 import ajax from './ajax'
 
+//添加先进个人的评选
+export const reqAddSolo = (unit) => ajax(BASE + '/solo/add', unit, 'POST')
+//添加先进单位评选
+export const reqAddUnit = (unit) => ajax(BASE + '/quantization/add', unit, 'POST')
 //添加首长，参谋的名字
 export const reqAddLeaderName = (leadername) => ajax(BASE + '/leader/add', leadername, 'POST')
 // 登陆

@@ -34,6 +34,8 @@ import PicShowUploads from '../picshow/PicShowUploads';
 import PicShowManage from '../picshow/PicShowManage';
 import PicShowDetail from '../picshow/PicShowDetail';
 import WriteLeader from '../leader/WriteLeader'
+import Unit from '../quantization/Unit'
+import Solo from '../quantization/Solo'
 
 
 const { Footer, Sider, Content } = Layout
@@ -86,6 +88,8 @@ export default class Admin extends Component {
               <Route path='/notice/detail' component={NoticeDetail}></Route>
               <Route path='/user' component={User} />
               <Route path='/role' component={Role} />
+              <Route path='/quantization/unit' component={Unit}></Route>
+              <Route path='/quantization/solo' component={Solo}></Route>
               <Route path='/leader/write' component={WriteLeader}></Route>
               <Route component={NotFound} />
             </Switch>

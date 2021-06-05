@@ -20,4 +20,22 @@ export const BASE_ALL_DEPARTMENT = [
     '财务股', '军需股', '油料股', '运输股', '机场营房股', '航材军械股', '飞行管制室', '气象台', '医院',
     '通信导航连', '警卫连', '汽车连', '场务连', '四站连'
 ]
+export const BASE_ALL_TUPLE_DEPARTMENT = [
+    { Cname: '场站参谋部', name: 'zmb' },
+    { Cname: '场站政治工作处', name: 'zzc' },
+    { Cname: '财务股', name: 'cw' },
+    { Cname: '军需股', name: 'jx' },
+    { Cname: '油料股', name: 'yl' },
+    { Cname: '运输股', name: 'ys' },
+    { Cname: '机场营房股', name: 'jy' },
+    { Cname: '航材军械股', name: 'hj' },
+    { Cname: '飞行管制室', name: 'fxgzs' },
+    { Cname: '气象台', name: 'qxt' },
+    { Cname: '医院', name: 'yy' },
+    { Cname: '通信导航连', name: 'td' },
+    { Cname: '警卫连', name: 'jw' },
+    { Cname: '汽车连', name: 'qc' },
+    { Cname: '场务连', name: 'cwl' },
+    { Cname: '四站连', name: 'sz' }
+]
 

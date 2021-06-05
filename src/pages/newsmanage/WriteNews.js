@@ -135,7 +135,8 @@ class WriteNews extends Component {
                         }
 
                     </Item>
-                    <Item label='文章封面图'>
+                    <Item label="文章封面图">
+
                         <PictureWall ref={this.pw} imgs={this.article.thumbnail} />
                     </Item>
                     <Item label="文章详情" labelCol={{ span: 2 }} wrapperCol={{ span: 20 }}>
@@ -149,8 +150,8 @@ class WriteNews extends Component {
                             type='primary'
                             block onClick={this.submit}>提交</Button>
                     </Item>
-                </Form>
-            </Card>
+                </Form >
+            </Card >
         )
     }
 }
