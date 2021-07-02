@@ -1,20 +1,12 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Upload, Icon, Modal, message } from 'antd'
-import { reqDeleteArticleImg} from '../../api'
-import {BASE_IMG_URL} from "../../utils/constants";
+import { reqDeleteArticleImg } from '../../api'
+import { BASE_IMG_URL } from "../../utils/constants";
 /*
 用于新闻中图片上传的组件
  */
-export default class PicturesWall extends React.Component {
-  static propTypes = {
-    imgs: PropTypes.array
-  }
-  state = {
-    previewVisible: false, // 标识是否显示大图预览Modal
-    previewImage: '', // 大图的url
-    fileList: [],
-  }
+class PictureWall extends React.Component {
+
   constructor(props) {
     super(props)
 
@@ -22,7 +14,7 @@ export default class PicturesWall extends React.Component {
 
     // 如果传入了imgs属性
     const { imgs } = this.props
-    console.log(imgs)
+    // console.log(imgs)
     if (imgs && imgs.length > 0) {
       fileList = imgs.map((img, index) => ({
         uid: -index, // 每个file都有自己唯一的id
@@ -40,11 +32,11 @@ export default class PicturesWall extends React.Component {
     }
   }
 
-/*
-  获取所有已上传图片文件名的数组
-   */
-  getImgs  = () => {
-    return this.state.fileList.map(file => file.name)  
+  /*
+    获取所有已上传图片文件名的数组
+     */
+  getImgs = () => {
+    return this.state.fileList.map(file => file.name)
   };
 
   /*
@@ -66,24 +58,24 @@ export default class PicturesWall extends React.Component {
   fileList: 所有已上传图片文件对象的数组
    */
   handleChange = async ({ file, fileList }) => {
-    console.log('handleChange()', file.status, fileList.length, file===fileList[fileList.length-1])
+    console.log('handleChange()', file.status, fileList.length, file === fileList[fileList.length - 1])
 
     // 一旦上传成功, 将当前上传的file的信息修正(name, url)
-    if(file.status==='done') {
+    if (file.status === 'done') {
       const result = file.response  // {status: 0, data: {name: 'xxx.jpg', url: '图片地址'}}
       console.log(result)
-      if(result.status===0) {
+      if (result.status === 0) {
         message.success('上传图片成功!')
-        const {name, url} = result.data
-        file = fileList[fileList.length-1]
+        const { name, url } = result.data
+        file = fileList[fileList.length - 1]
         file.name = name
         file.url = url
       } else {
         message.error('上传图片失败')
       }
-    } else if (file.status==='removed') { // 删除图片
+    } else if (file.status === 'removed') { // 删除图片
       const result = await reqDeleteArticleImg(file.name)
-      if (result.status===0) {
+      if (result.status === 0) {
         message.success('删除图片成功!')
       } else {
         message.error('删除图片失败!')
@@ -93,7 +85,6 @@ export default class PicturesWall extends React.Component {
     // 在操作(上传/删除)过程中更新fileList状态
     this.setState({ fileList })
   };
-
   render() {
     const { previewVisible, previewImage, fileList } = this.state;
     const uploadButton = (
@@ -103,6 +94,7 @@ export default class PicturesWall extends React.Component {
       </div>
     );
     return (
+
       <div>
         <Upload
           action="/articlesImg/uploads" /*上传图片的接口地址*/
@@ -113,13 +105,17 @@ export default class PicturesWall extends React.Component {
           onPreview={this.handlePreview}
           onChange={this.handleChange}
         >
-          {fileList.length >= 1 ? null : uploadButton}
+          {fileList.length >= 50 ? null : uploadButton}
         </Upload>
 
         <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
           <img alt="example" style={{ width: '100%' }} src={previewImage} />
         </Modal>
       </div>
+
     );
   }
 }
+
+
+export default PictureWall

@@ -22,26 +22,26 @@
     componentDidMount() {
       this.setState({count: this.state.count + 1})
       this.setState({count: this.state.count + 1})
-      console.log(this.state.count) // 2 ==> 0
+      console.log(this.state.count,'1111') // 2 ==> 0
 
       this.setState(state => ({count: state.count + 1}))
       this.setState(state => ({count: state.count + 1}))
-      console.log(this.state.count) // 3 ==> 0
+      console.log(this.state.count,'2222') // 3 ==> 0
 
       setTimeout(() => {
         this.setState({count: this.state.count + 1})
-        console.log('timeout', this.state.count) // 10 ==> 6
+        console.log('timeout', this.state.count,'33333') // 10 ==> 6
 
         this.setState({count: this.state.count + 1})
-        console.log('timeout', this.state.count) // 12 ==> 7
+        console.log('timeout', this.state.count,'44444') // 12 ==> 7
       }, 0)
 
       Promise.resolve().then(value => {
         this.setState({count: this.state.count + 1})
-        console.log('promise', this.state.count)  // 6 ==>4
+        console.log('promise', this.state.count,'promise111')  // 6 ==>4
 
         this.setState({count: this.state.count + 1})
-        console.log('promise', this.state.count) // 8 ==> 5
+        console.log('promise', this.state.count,'promise222') // 8 ==> 5
       })
     }
 

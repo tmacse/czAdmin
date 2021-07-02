@@ -5,6 +5,8 @@
 
 基本要求: 能根据接口文档定义接口请求函数
  */
+import jsonp from 'jsonp'
+import { message } from 'antd'
 import { BASE } from '../utils/constants'
 import ajax from './ajax'
 
@@ -45,6 +47,7 @@ export const reqDeleteVideo = (name) => ajax(BASE + '/videoFile/delete', { name 
 export const reqArticleUpdateStatus = (title) => ajax(BASE + '/article/updateStatus', { title }, 'POST')
 //删除新闻(根据文章title删除文章)
 export const reqDeleteArticle = (title) => ajax(BASE + '/article/delete', { title }, 'POST')
+export const reqDeleteNotice = (title) => ajax(BASE + '/notices/delete', { title }, 'POST')
 //获取分页的新闻列表（新闻经过审核过的）
 export const reqCheckedArticles = (pageNum, pageSize) => ajax(BASE + '/article/checkedlist', { pageNum, pageSize })
 export const reqCheckedSearchArticles = ({ pageNum, pageSize, searchName, searchType }) => ajax(BASE + '/article/search', {
@@ -90,7 +93,7 @@ export const reqSearchMessages = ({ pageNum, pageSize, searchName, searchType })
 export const reqDeleteBookFile = (title) => ajax(BASE + '/bookfile/delete', { title }, 'POST')
 export const reqDeleteMessages = (title) => ajax(BASE + '/departmentMessage/delete', { title }, 'POST')
 
-export const reqDeleteNotice = (title) => ajax(BASE + '/notices/delete', { title }, 'POST')
+
 
 //获取分页的视频列表
 export const reqSearchVideos = ({ pageNum, pageSize, searchName, searchType }) => ajax(BASE + '/video/search', {
@@ -140,3 +143,23 @@ export const reqSearchPicshow = ({ pageNum, pageSize, searchName, searchType }) 
 })
 export const reqAddOrUpdatePicShow = (picshow) => ajax(BASE + '/picshow/' + (picshow._id ? 'update' : 'add'), picshow, 'POST')
 export const reqDeletePicShow = (title) => ajax(BASE + '/picshow/delete', { title }, 'POST')
+export const reqWeather = (city) => {
+
+  return new Promise((resolve, reject) => {
+    const url = `http://api.map.baidu.com/telematics/v3/weather?location=${city}&output=json&ak=3p49MVra6urFRGOT9s8UBWr2`
+    // 发送jsonp请求
+    jsonp(url, {}, (err, data) => {
+      // console.log('jsonp()', err, data)
+      // 如果成功了
+      if (!err && data.status === 'success') {
+        // 取出需要的数据
+        const { dayPictureUrl, weather } = data.results[0].weather_data[0]
+        resolve({ dayPictureUrl, weather })
+      } else {
+        // 如果失败了
+        message.error('获取天气信息失败!')
+      }
+
+    })
+  })
+}

@@ -16,7 +16,9 @@ class PicShowManage extends Component {
         loading: false,//是否正在加载中
         searchName: '', // 搜索的关键字
         searchType: 'noticeTitle', // 根据哪个字段搜索
+
     }
+
     //获取指定页码的列表数据表示
     getNotices = async (pageNum) => {
         //发送请求之前，将loading效果设置为true

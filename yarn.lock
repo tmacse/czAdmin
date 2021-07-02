@@ -1891,6 +1891,11 @@ atob@^2.1.1:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
 
+audit@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.nlark.com/audit/download/audit-0.0.6.tgz#fef17dd84af1dcd2a5633fd46d3b1adcb084bf3b"
+  integrity sha1-/vF92Erx3NKlYz/UbTsa3LCEvzs=
+
 autoprefixer@^9.4.9:
   version "9.5.1"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-9.5.1.tgz#243b1267b67e7e947f28919d786b50d3bb0fb357"
@@ -2807,6 +2812,11 @@ core-js@^1.0.0:
 core-js@^2.4.0:
   version "2.6.5"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.5.tgz#44bc8d249e7fb2ff5d00e0341a7ffb94fbf67895"
+
+core-js@^3.15.0:
+  version "3.15.0"
+  resolved "https://registry.nlark.com/core-js/download/core-js-3.15.0.tgz?cache=0&sync_timestamp=1624210559282&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcore-js%2Fdownload%2Fcore-js-3.15.0.tgz#db9554ebce0b6fd90dc9b1f2465c841d2d055044"
+  integrity sha1-25VU684Lb9kNybHyRlyEHS0FUEQ=
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -4203,6 +4213,15 @@ find-up@^2.0.0, find-up@^2.1.0:
   resolved "https://registry.yarnpkg.com/find-up/-/find-up-2.1.0.tgz#45d1b7e506c717ddd482775a2b77920a3c0c57a7"
   dependencies:
     locate-path "^2.0.0"
+
+fix@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.nlark.com/fix/download/fix-0.0.6.tgz#07e593a27414ddc486ee52d50f9c8e09885a0305"
+  integrity sha1-B+WTonQU3cSG7lLVD5yOCYhaAwU=
+  dependencies:
+    pipe "0.0.2"
+    underscore "1.1.6"
+    underscore.string "1.1.4"
 
 flat-cache@^2.0.1:
   version "2.0.1"
@@ -6993,6 +7012,11 @@ pinkie-promise@^2.0.0:
 pinkie@^2.0.0:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
+
+pipe@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.nlark.com/pipe/download/pipe-0.0.2.tgz#a16fe6fc019d75bd987c4928a67e1e50e4f5b44f"
+  integrity sha1-oW/m/AGddb2YfEkopn4eUOT1tE8=
 
 pirates@^4.0.1:
   version "4.0.1"
@@ -10178,6 +10202,18 @@ uglify-to-browserify@~1.0.0:
   version "1.0.2"
   resolved "https://registry.npm.taobao.org/uglify-to-browserify/download/uglify-to-browserify-1.0.2.tgz#6e0924d6bda6b5afe349e39a6d632850a0f882b7"
   integrity sha1-bgkk1r2mta/jSeOabWMoUKD4grc=
+
+underscore.string@1.1.4:
+  version "1.1.4"
+  resolved "https://registry.nlark.com/underscore.string/download/underscore.string-1.1.4.tgz#9be06b23b8e3d996ea2020f9984202069e3dee12"
+  integrity sha1-m+BrI7jj2ZbqICD5mEICBp497hI=
+  dependencies:
+    underscore "1.1.6"
+
+underscore@1.1.6:
+  version "1.1.6"
+  resolved "https://registry.npm.taobao.org/underscore/download/underscore-1.1.6.tgz#6868da1bdd72d75285be0b4e50f228e70d001a2c"
+  integrity sha1-aGjaG91y11KFvgtOUPIo5w0AGiw=
 
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"

@@ -5,15 +5,18 @@
   "dependencies": {
     "@antv/data-set": "^0.10.2",
     "antd": "^3.21.4",
+    "audit": "^0.0.6",
     "axios": "^0.18.0",
     "babel-plugin-import": "^1.11.0",
     "bizcharts": "^3.5.2",
     "braft-editor": "^2.3.7",
+    "core-js": "^3.15.0",
     "customize-cra": "^0.2.12",
     "draft-js": "0.10.5",
     "draftjs-to-html": "^0.8.4",
     "echarts": "^4.2.1",
     "echarts-for-react": "^2.0.15-beta.0",
+    "fix": "^0.0.6",
     "html-to-draftjs": "1.4.0",
     "jsonp": "^0.2.1",
     "less": "^3.9.0",
@@ -55,5 +58,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000"
+  
+    "proxy":"http://localhost:5000/"
+           
+
 }

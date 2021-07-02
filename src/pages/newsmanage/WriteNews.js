@@ -1,23 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PictureWall from './pictures-wall'
 import { Card, Form, Input, Button, message, Select } from 'antd';
-// import RichTextEditor from './RichTextEditor';
 import EditorDemo from './RichText.js'
 import { BASE_ALL_DEPARTMENT } from '../../utils/constants'
 import { reqAddOrUpdateArticle } from '../../api/index';
 import FileWall from './FileWall';
 const { Item } = Form
-// const { TextArea } = Input
 const { Option } = Select;
 
+class WriteNews extends React.Component {
 
-class WriteNews extends Component {
     constructor(props) {
         super(props)
         // 创建用来保存ref标识的标签对象的容器
         this.pw = React.createRef() //创建保存缩略图的容器
         this.editor = React.createRef() //创建保存编辑器的容器
         this.fw = React.createRef() //创建用来保存文件地址的容器
+        const article = this.props.location.state.message  // 如果是添加没值, 否则有值
+        // 保存是否是更新的标识
+        this.isUpdate = !!article
+        // 保存商品(如果没有, 保存是{})
+        this.article = article || {}
     }
 
     submit = () => {
@@ -27,11 +30,10 @@ class WriteNews extends Component {
                 //1.收集数据，2调用接口请求函数添加3.根据结果提示
                 // console.log('ok')
 
-                const { title, author, department, category } = values//获取文章的标题，作者，单位和分类
-                const thumbnail = this.pw.current.getImgs()  //获取缩略图
-                const content = this.editor.current.getDetail()  //通过编辑器获得文章的内容
-                const download_url = this.fw.current.getUrls()//获取文章中文件的下载地址
-                const article = { title, author, department, thumbnail, category, content, download_url }
+                const { title, author, department, category } = values
+                const thumbnail = this.pw.current.getImgs()
+                const content = this.editor.current.getDetail()
+                const article = { title, author, department, thumbnail, category, content }
                 // 如果是更新, 需要添加_id
                 if (this.isUpdate) {
                     article._id = this.article._id
@@ -57,17 +59,9 @@ class WriteNews extends Component {
         })
 
     }
-    componentWillMount() {
-        // 取出携带的state
-        const article = this.props.location.state  // 如果是添加没值, 否则有值
-        // 保存是否是更新的标识
-        this.isUpdate = !!article
-        // 保存商品(如果没有, 保存是{})
-        this.article = article || {}
-    }
-
     render() {
-        //    console.log(this.article.thumbnail[0])
+        const { getFieldDecorator } = this.props.form;
+        const { title, category, author, department, thumbnail, content } = this.article
         const formItemLayout = {
             labelCol: {
                 xs: { span: 2 },//左侧的宽度
@@ -78,14 +72,12 @@ class WriteNews extends Component {
                 sm: { span: 20 },
             },
         };
-
-        const { getFieldDecorator } = this.props.form;
         return (
             <Card>
                 <Form {...formItemLayout}>
                     <Item label="文章分类">
                         {getFieldDecorator('category', {
-                            initialValue: this.article.category,
+                            initialValue: category,
                             rules: [{ required: true, message: '必须选择文章分类!' }],
                         })(
                             <Select
@@ -102,7 +94,7 @@ class WriteNews extends Component {
                     <Item label='文章名'>
                         {
                             getFieldDecorator('title', {
-                                initialValue: this.article.title,
+                                initialValue: title,
                                 rules: [
                                     { required: true, message: '必须输入文章名称' },
                                     { max: 50, message: '输入标题过长' }//设置标题名过长错误提示的规则
@@ -113,7 +105,7 @@ class WriteNews extends Component {
                     <Item label='文章作者'>
                         {
                             getFieldDecorator('author', {
-                                initialValue: this.article.author,
+                                initialValue: author,
                                 rules: [
                                     { required: true, message: '必须输入文章作者' },
                                     { whitespace: true }
@@ -125,7 +117,7 @@ class WriteNews extends Component {
                     <Item label='文章单位'>
                         {
                             getFieldDecorator('department', {
-                                initialValue: this.article.department,
+                                initialValue: department,
                                 rules: [
                                     { required: true, message: '必须输入作者单位' },
                                     { type: "enum", enum: BASE_ALL_DEPARTMENT }//设置了单位枚举类型
@@ -135,12 +127,9 @@ class WriteNews extends Component {
                         }
 
                     </Item>
-                    <Item label="文章封面图">
-
-                        <PictureWall ref={this.pw} imgs={this.article.thumbnail} />
-                    </Item>
+                    <Item label="文章封面图"><PictureWall ref={this.pw} imgs={thumbnail} /></Item>
                     <Item label="文章详情" labelCol={{ span: 2 }} wrapperCol={{ span: 20 }}>
-                        <EditorDemo ref={this.editor} detail={this.article.content} />
+                        <EditorDemo ref={this.editor} detail={content} />
                     </Item>
                     <Item label='文件上传'>
                         <FileWall ref={this.fw} />
@@ -150,12 +139,15 @@ class WriteNews extends Component {
                             type='primary'
                             block onClick={this.submit}>提交</Button>
                     </Item>
-                </Form >
-            </Card >
+                </Form>
+            </Card>
         )
+
+
     }
 }
 export default Form.create()(WriteNews)
+
 
 
 /*
